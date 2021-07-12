@@ -3,7 +3,7 @@
 
 Harbinger is a canary code that contacts a DMS to check satellite uptime and readiness for uploading and downloading data.
 
-To run harbinger locally, you will need a bucket and access token to test
+To run harbinger locally, you will need a test bucket and its corresponding access token.
 
 How to run:
 
@@ -30,4 +30,5 @@ Run the main.go file using the desired bucket, its access token, and the dms tok
 go run main.go --access <access> --bucket <bucket> --file-path harb.txt --token <dms-token> --dms-endpoint http://localhost:1323 --log-level debug
 ```
 
-If the satellite is up and running, the program will return the debug message "dms checkin completed"
+
+If the satellite is up and running, the program will return the debug message "dms checkin completed".
