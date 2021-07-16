@@ -1,0 +1,22 @@
+ # Alert if memory limit reached (OOM)
+      - alert: ContainerOOM
+        expr: container_memory_usage_bytes{job = "cadvisor"} == container_spec_memory_limit_bytes
+        for: 5m
+        labels:
+          severity: warning
+        annotations:
+          summary: 'Container Memory Limit Reached'
+          app: '{{ $labels.app }}'
+          service: '{{ $labels.service }}'
+          namespace: '{{ $labels.kubernetes_namespace }}'
+ # Alert if memory allocation fails
+      - alert: MallocFailure
+        expr: container_memory_failure_total{job = "cadvisor"} > 0
+        for: 1m
+        labels:
+          severity: warning
+        annotations:
+          summary: 'Memory Allocation Failure'
+          app: '{{ $labels.app }}'
+          service: '{{ $labels.service }}'
+          namespace: '{{ $labels.kubernetes_namespace }}'
